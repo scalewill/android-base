@@ -117,4 +117,4 @@ When you add code which uses reflection add rules to `proguard-rules.pro`.
 ## Credits
 Android base app is maintained by [Scalewill](https://www.scalewill.com). [List of contributors](https://github.com/scalewill/android-base/contributors)
 
-[<img src="https://www.scalewill.com/logo.svg" width="100"/>](https://www.scalewill.com)
+[<img src="https://www.scalewill.com/logo.svg" width="200"/>](https://www.scalewill.com)
