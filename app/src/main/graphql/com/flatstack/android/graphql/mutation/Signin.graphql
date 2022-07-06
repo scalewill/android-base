@@ -1,5 +1,5 @@
-mutation Login($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
+mutation Login($signIn: SignInInput!) {
+    signin(input: $signIn) {
         accessToken
     }
 }

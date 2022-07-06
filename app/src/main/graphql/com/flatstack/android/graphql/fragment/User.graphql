@@ -1,4 +1,4 @@
-fragment UserGqlFragment on User {
+fragment UserGqlFragment on CurrentUser {
     firstName
     lastName
 }

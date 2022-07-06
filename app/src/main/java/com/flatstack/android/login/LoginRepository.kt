@@ -8,7 +8,13 @@ import com.flatstack.android.model.entities.Session
 import com.flatstack.android.model.network.NetworkBoundResource
 import com.flatstack.android.model.network.errors.ErrorHandler
 import com.flatstack.android.profile.AuthorizationModel
-import kotlinx.coroutines.*
+import com.flatstack.android.type.SignInInput
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.launch
 
 class LoginRepository(
     private val apolloClient: ApolloClient,
@@ -41,5 +47,5 @@ class LoginRepository(
     }
 
     private fun loginMutation(email: String, password: String) =
-        LoginMutation(email = email, password = password)
+        LoginMutation(SignInInput(email = email, password = password))
 }
