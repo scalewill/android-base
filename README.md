@@ -16,7 +16,7 @@ This project will help you quickly start developing a new android app
 
 ## Setup
 ### Starting from base project
-1. `git clone --depth 1 git://github.com/fs/android-base.git --origin android-base [NEW-PROJECT-NAME]`
+1. `git clone --depth 1 git://github.com/scalewill/android-base.git --origin android-base [NEW-PROJECT-NAME]`
 1. `cd [NEW-PROJECT-NAME]`
 1. `git remote add origin https://github.com/[NEW-PROJECT-GITHUB-ACCOUNT]/[NEW-PROJECT-NAME].git`
 1. `git push -u origin master`
@@ -38,12 +38,7 @@ This project will help you quickly start developing a new android app
 1. Click `Finish`
 
 ### Updating secret keys
-1. Decrypt file:
-
-```bash
-openssl aes-256-cbc -d -md sha256 -nosalt -a -pass pass:{KEY} -in secrets/keys.properties.crypted > temp.properties
-```
-
+1. Run in the sh terminal ‘secrets/decrypt-keys.sh’ to decrypt google-services.json & keys.properties files
 2. Add/remove keys inside `temp.properties`
 3. Encrypt temp.properties back
 
@@ -53,6 +48,14 @@ openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:{KEY} -in temp.propertie
 ```
 
 4. Clean up: `rm temp.properties`.
+
+### GraphQL requirement steps
+1. Run in the sh terminal ‘secrets/download-graphql-schema.sh’ to download schema and generate Apollo classes by schema
+2. Generate GraphQL SDL schema file to enable auto-completion for coding query file. [GraphQL IntelliJ Plugin](https://github.com/JetBrains/js-graphql-intellij-plugin) will help:
+
+![GraphQL IntelliJ Plugin screen](./image/graphql-schema-screen.png "GraphQL IntelliJ Plugin")
+
+3. Make sure that app/main/graphql/com/flatstack/android/schema.json.graphql doesn't exist to run app
 
 ## Building
 ### Create APK
@@ -107,11 +110,11 @@ $ ./gradlew test
 
 ## ProGuard
 Project already has proguard config for included libraries.
-Maintain [proguard-rules.pro](https://github.com/fs/android-base/blob/master/app/proguard-rules.pro) updated when you add new libraries or play with reflection.
+Maintain [proguard-rules.pro](https://github.com/scalewill/android-base/blob/master/app/proguard-rules.pro) updated when you add new libraries or play with reflection.
 When you add new library or check out its Proguard section and add rules to `proguard-rules.pro`.
 When you add code which uses reflection add rules to `proguard-rules.pro`.
 
 ## Credits
-Android base app is maintained by [Flatstack](http://www.flatstack.com). [List of contributors](http://github.com/fs/android-base/contributors)
+Android base app is maintained by [Scalewill](https://www.scalewill.com). [List of contributors](https://github.com/scalewill/android-base/contributors)
 
-[<img src="http://www.flatstack.com/logo.svg" width="100"/>](http://www.flatstack.com)
+[<img src="https://www.scalewill.com/logo.svg" width="200"/>](https://www.scalewill.com)
