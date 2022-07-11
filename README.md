@@ -43,7 +43,7 @@ This project will help you quickly start developing a new android app
 3. Encrypt temp.properties back
 
 ```bash
-openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:12345678 -in google-services.json -out ./secrets/google-services.json.crypted
+openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:{KEY} -in temp.properties -out ./secrets/keys.properties.crypted
 
 ```
 
