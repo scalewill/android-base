@@ -23,7 +23,7 @@ android {
     compileSdkVersion versions.TARGET_SDK_VERSION
 
     defaultConfig {
-        applicationId "com.flatstack.android"
+        applicationId "com.scalewill.android"
         minSdkVersion versions.MIN_SDK_VERSION
         targetSdkVersion versions.TARGET_SDK_VERSION
         versionCode appVersionCode.toInteger()
