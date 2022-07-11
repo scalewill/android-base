@@ -43,7 +43,7 @@ This project will help you quickly start developing a new android app
 3. Encrypt temp.properties back
 
 ```bash
-openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:{KEY} -in temp.properties -out ./secrets/keys.properties.crypted
+openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:12345678 -in google-services.json -out ./secrets/google-services.json.crypted
 
 ```
 
@@ -55,7 +55,7 @@ openssl aes-256-cbc -e -md sha256 -nosalt -a -pass pass:{KEY} -in temp.propertie
 
 ![GraphQL IntelliJ Plugin screen](./image/graphql-schema-screen.png "GraphQL IntelliJ Plugin")
 
-3. Make sure that app/main/graphql/com/flatstack/android/schema.json.graphql doesn't exist to run app
+3. Make sure that app/main/graphql/com/scalewill/android/schema.json.graphql doesn't exist to run app
 
 ## Building
 ### Create APK
