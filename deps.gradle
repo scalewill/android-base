@@ -3,7 +3,7 @@ ext {
             BUILD_TOOLS_VERSION: '28.0.3',
             MIN_SDK_VERSION    : 17,
             TARGET_SDK_VERSION : 32,
-            kotlin             : '1.6.10',
+            kotlin             : '1.7.10',
             apollo             : '2.5.12',
             detekt             : '1.21.0',
             android_junit5     : '1.6.1.0',
