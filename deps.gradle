@@ -3,11 +3,11 @@ ext {
             BUILD_TOOLS_VERSION: '28.0.3',
             MIN_SDK_VERSION    : 17,
             TARGET_SDK_VERSION : 32,
-            kotlin             : '1.4.10',
-            apollo             : '2.2.3',
+            kotlin             : '1.6.10',
+            apollo             : '2.5.12',
             detekt             : '1.10.0',
-            android_junit5     : '1.2.0.0',
-            kodein             : '6.2.0',
+            android_junit5     : '1.6.1.0',
+            kodein             : '6.4.0',
             lifecycle          : '2.0.0',
             spek               : '2.0.4',
             junit5_runner      : '0.2.2',
@@ -15,7 +15,7 @@ ext {
             mockwebserver      : '3.14.0',
             retrofit           : '2.5.0',
             coroutines         : '1.1.1',
-            room               : '2.1.0-beta01',
+            room               : '2.5.0-alpha02',
             espressoVersion    : '3.1.1'
     ]
     androidx = [

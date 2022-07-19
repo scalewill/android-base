@@ -23,14 +23,13 @@ android {
     compileSdkVersion versions.TARGET_SDK_VERSION
 
     defaultConfig {
+        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         applicationId "com.flatstack.android"
         minSdkVersion versions.MIN_SDK_VERSION
         targetSdkVersion versions.TARGET_SDK_VERSION
         versionCode appVersionCode.toInteger()
         versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument "runnerBuilder",
-                "de.mannodermaus.junit5.AndroidJUnit5Builder"
         buildConfigField 'String', 'BASE_URL', "\"https://rails-base-graphql-api.herokuapp.com/graphql\""
 
         oneClickPublish {
@@ -73,11 +72,6 @@ android {
             }
         }
     }
-    lintOptions {
-        warningsAsErrors true
-        htmlOutput file("build/reports/lint/lint-report.html")
-        xmlOutput file("build/reports/lint/lint-report.xml")
-    }
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -90,6 +84,15 @@ android {
     }
     androidExtensions {
         experimental = true
+    }
+    lint {
+        htmlOutput file('build/reports/lint/lint-report.html')
+        warningsAsErrors true
+        xmlOutput file('build/reports/lint/lint-report.xml')
+    }
+    namespace 'com.flatstack.android'
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -119,6 +122,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:1.0.0"
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.6'
 
     testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 }
