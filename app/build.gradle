@@ -23,13 +23,13 @@ android {
     compileSdkVersion versions.TARGET_SDK_VERSION
 
     defaultConfig {
-        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         applicationId "com.flatstack.android"
         minSdkVersion versions.MIN_SDK_VERSION
         targetSdkVersion versions.TARGET_SDK_VERSION
         versionCode appVersionCode.toInteger()
         versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         buildConfigField 'String', 'BASE_URL', "\"https://rails-base-graphql-api.herokuapp.com/graphql\""
 
         oneClickPublish {
@@ -82,15 +82,6 @@ android {
                             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
                             "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"]
     }
-    androidExtensions {
-        experimental = true
-    }
-    lint {
-        htmlOutput file('build/reports/lint/lint-report.html')
-        warningsAsErrors true
-        xmlOutput file('build/reports/lint/lint-report.xml')
-    }
-    namespace 'com.flatstack.android'
     buildFeatures {
         viewBinding true
     }

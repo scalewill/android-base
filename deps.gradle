@@ -1,6 +1,6 @@
 ext {
     versions = [
-            BUILD_TOOLS_VERSION: '28.0.3',
+            BUILD_TOOLS_VERSION: '32.0.0',
             MIN_SDK_VERSION    : 17,
             TARGET_SDK_VERSION : 32,
             kotlin             : '1.7.10',
