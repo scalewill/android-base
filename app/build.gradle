@@ -29,8 +29,7 @@ android {
         versionCode appVersionCode.toInteger()
         versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument "runnerBuilder",
-                "de.mannodermaus.junit5.AndroidJUnit5Builder"
+        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         buildConfigField 'String', 'BASE_URL', "\"https://rails-base-graphql-api.herokuapp.com/graphql\""
 
         oneClickPublish {
@@ -73,11 +72,6 @@ android {
             }
         }
     }
-    lintOptions {
-        warningsAsErrors true
-        htmlOutput file("build/reports/lint/lint-report.html")
-        xmlOutput file("build/reports/lint/lint-report.xml")
-    }
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -88,8 +82,8 @@ android {
                             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
                             "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"]
     }
-    androidExtensions {
-        experimental = true
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -103,22 +97,24 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.google.code.gson:gson:$versions.gson"
 
     implementation androidLibs
     implementation apolloLibs
     implementation coroutinesLibs
     implementation kodeinLibs
     implementation roomLibs
+    implementation uiLibs
     kapt compilerLibs
 
-    testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
-
-    implementation platform('com.google.firebase:firebase-bom:25.12.0')
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    testImplementation unitTestLibs
 
     testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-api:$versions.junit"
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:$versions.junit5_runner"
 }

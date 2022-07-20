@@ -5,11 +5,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.flatstack.android.R
 import com.flatstack.android.Router
+import com.flatstack.android.databinding.ActivityLoginBinding
 import com.flatstack.android.util.observeBy
 import com.flatstack.android.util.provideViewModel
-import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     override val kodein: Kodein by kodein()
 
     private val viewModel: LoginViewModel by provideViewModel()
+    private val binding: ActivityLoginBinding by viewBinding(ActivityLoginBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,31 +43,33 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun initListeners() {
-        bt_login.setOnClickListener { login() }
-        et_password.apply {
-            setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_GO) {
-                    login()
-                    return@setOnEditorActionListener true
+        with(binding) {
+            btLogin.setOnClickListener { login() }
+            etPassword.apply {
+                setOnEditorActionListener { _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_GO) {
+                        login()
+                        return@setOnEditorActionListener true
+                    }
+                    return@setOnEditorActionListener false
                 }
-                return@setOnEditorActionListener false
             }
         }
     }
 
-    private fun login() {
-        val username = et_login.text.toString()
-        val password = et_password.text.toString()
+    private fun login() = with(binding) {
+        val username = etLogin.text.toString()
+        val password = etPassword.text.toString()
         viewModel.login(username, password)
     }
 
-    private fun setProgress(isLoading: Boolean) {
+    private fun setProgress(isLoading: Boolean) = with(binding) {
         if (isLoading) {
-            pb_progress.visibility = View.VISIBLE
-            bt_login.isEnabled = false
+            pbProgress.visibility = View.VISIBLE
+            btLogin.isEnabled = false
         } else {
-            pb_progress.visibility = View.GONE
-            bt_login.isEnabled = true
+            pbProgress.visibility = View.GONE
+            btLogin.isEnabled = true
         }
     }
 

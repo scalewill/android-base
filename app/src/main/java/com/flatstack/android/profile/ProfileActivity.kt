@@ -8,11 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.flatstack.android.R
 import com.flatstack.android.Router
+import com.flatstack.android.databinding.ActivityProfileBinding
 import com.flatstack.android.util.observeBy
 import com.flatstack.android.util.provideViewModel
-import kotlinx.android.synthetic.main.activity_profile.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -23,8 +24,9 @@ class ProfileActivity : AppCompatActivity(), KodeinAware, OnRefreshListener {
     override val kodein: Kodein by kodein()
 
     private val viewModel: ProfileViewModel by provideViewModel()
+    private val binding: ActivityProfileBinding by viewBinding(ActivityProfileBinding::bind)
 
-    private val refreshLayout: SwipeRefreshLayout by lazy { swipe_layout }
+    private val refreshLayout: SwipeRefreshLayout by lazy { binding.swipeLayout }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +63,11 @@ class ProfileActivity : AppCompatActivity(), KodeinAware, OnRefreshListener {
     }
 
     private fun showFirstName(firstName: String) {
-        tv_first_name.text = firstName
+        binding.tvFirstName.text = firstName
     }
 
     private fun showLastName(lastName: String) {
-        tv_last_name.text = lastName
+        binding.tvLastName.text = lastName
     }
 
     private fun logout() {
@@ -80,7 +82,7 @@ class ProfileActivity : AppCompatActivity(), KodeinAware, OnRefreshListener {
     }
 
     private fun showProfile() {
-        cl_main.visibility = View.VISIBLE
+        binding.clMain.visibility = View.VISIBLE
     }
 
     private fun showError(errorText: String?) {
